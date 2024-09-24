@@ -40,8 +40,8 @@ extern "C" {
  * @param _alloc_func Allocator function pointer of type @ref sys_hashmap_allocator_t.
  * @param ... Details for @ref sys_hashmap_config.
  */
-#define SYS_HASHMAP_SC_DEFINE_ADVANCED(_name, _hash_func, _alloc_func, ...)                        \
-	SYS_HASHMAP_DEFINE_ADVANCED(_name, &sys_hashmap_sc_api, sys_hashmap_config,                \
+#define SYS_HASHMAP_SC_DEFINE_ADVANCED(_name, _hash_func, _alloc_func, ...)                       \
+	SYS_HASHMAP_DEFINE_ADVANCED(_name, &sys_hashmap_sc_api, sys_hashmap_config,                     \
 				    sys_hashmap_data, _hash_func, _alloc_func, __VA_ARGS__)
 
 /**
@@ -57,8 +57,8 @@ extern "C" {
  * @param _alloc_func Allocator function pointer of type @ref sys_hashmap_allocator_t.
  * @param ... Details for @ref sys_hashmap_config.
  */
-#define SYS_HASHMAP_SC_DEFINE_STATIC_ADVANCED(_name, _hash_func, _alloc_func, ...)                 \
-	SYS_HASHMAP_DEFINE_STATIC_ADVANCED(_name, &sys_hashmap_sc_api, sys_hashmap_config,         \
+#define SYS_HASHMAP_SC_DEFINE_STATIC_ADVANCED(_name, _hash_func, _alloc_func, ...)                \
+	SYS_HASHMAP_DEFINE_STATIC_ADVANCED(_name, &sys_hashmap_sc_api, sys_hashmap_config,              \
 					   sys_hashmap_data, _hash_func, _alloc_func, __VA_ARGS__)
 
 /**
@@ -68,9 +68,9 @@ extern "C" {
  *
  * @param _name Name of the Hashmap.
  */
-#define SYS_HASHMAP_SC_DEFINE_STATIC(_name)                                                        \
-	SYS_HASHMAP_SC_DEFINE_STATIC_ADVANCED(                                                     \
-		_name, sys_hash32, SYS_HASHMAP_DEFAULT_ALLOCATOR,                                  \
+#define SYS_HASHMAP_SC_DEFINE_STATIC(_name)                                                       \
+	SYS_HASHMAP_SC_DEFINE_STATIC_ADVANCED(                                                          \
+		_name, sys_hash32, SYS_HASHMAP_DEFAULT_ALLOCATOR,                                             \
 		SYS_HASHMAP_CONFIG(SIZE_MAX, SYS_HASHMAP_DEFAULT_LOAD_FACTOR))
 
 /**
@@ -80,17 +80,17 @@ extern "C" {
  *
  * @param _name Name of the Hashmap.
  */
-#define SYS_HASHMAP_SC_DEFINE(_name)                                                               \
-	SYS_HASHMAP_SC_DEFINE_ADVANCED(                                                            \
-		_name, sys_hash32, SYS_HASHMAP_DEFAULT_ALLOCATOR,                                  \
+#define SYS_HASHMAP_SC_DEFINE(_name)                                                              \
+	SYS_HASHMAP_SC_DEFINE_ADVANCED(                                                                 \
+		_name, sys_hash32, SYS_HASHMAP_DEFAULT_ALLOCATOR,                                             \
 		SYS_HASHMAP_CONFIG(SIZE_MAX, SYS_HASHMAP_DEFAULT_LOAD_FACTOR))
 
 #ifdef CONFIG_SYS_HASH_MAP_CHOICE_SC
 #define SYS_HASHMAP_DEFAULT_DEFINE(_name)	 SYS_HASHMAP_SC_DEFINE(_name)
 #define SYS_HASHMAP_DEFAULT_DEFINE_STATIC(_name) SYS_HASHMAP_SC_DEFINE_STATIC(_name)
-#define SYS_HASHMAP_DEFAULT_DEFINE_ADVANCED(_name, _hash_func, _alloc_func, ...)                   \
+#define SYS_HASHMAP_DEFAULT_DEFINE_ADVANCED(_name, _hash_func, _alloc_func, ...)                  \
 	SYS_HASHMAP_SC_DEFINE_ADVANCED(_name, _hash_func, _alloc_func, __VA_ARGS__)
-#define SYS_HASHMAP_DEFAULT_DEFINE_STATIC_ADVANCED(_name, _hash_func, _alloc_func, ...)            \
+#define SYS_HASHMAP_DEFAULT_DEFINE_STATIC_ADVANCED(_name, _hash_func, _alloc_func, ...)           \
 	SYS_HASHMAP_SC_DEFINE_STATIC_ADVANCED(_name, _hash_func, _alloc_func, __VA_ARGS__)
 #endif
 
